@@ -10,8 +10,8 @@ public class LongestSubstring {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String s="aaaaaaaa";
-		System.out.println(lengthOfLongestSubstring(s));
+		String s="abcabcdbbe";
+		System.out.println(lengthOfLongestSubstringUNORDEREDMAP(s));
 	}
 	 public static int lengthOfLongestSubstring(String s) {
     int n = s.length();
@@ -37,7 +37,10 @@ public class LongestSubstring {
         lastIndex[currentChar] = end + 1;
         System.out.println(" lastIndex['a'] "+lastIndex['a']);
     }
-    
+    for(int i=0;i<lastIndex.length; i++)
+    {
+    System.out.print(lastIndex[i] + " ");
+    }
     return maxLength;
 }
 	 public int lengthOfLongestSubstringUsinfgSET(String s) {
@@ -61,7 +64,7 @@ public class LongestSubstring {
 	        
 	        return maxLength;
 	    }
-	 public int lengthOfLongestSubstringUNORDEREDMAP(String s) {
+	 public static int lengthOfLongestSubstringUNORDEREDMAP(String s) {
 	        int n = s.length();
 	        int maxLength = 0;
 	        Map<Character, Integer> charMap = new HashMap<>();
@@ -70,13 +73,22 @@ public class LongestSubstring {
 	        for (int right = 0; right < n; right++) {
 	            if (!charMap.containsKey(s.charAt(right)) || charMap.get(s.charAt(right)) < left) {
 	                charMap.put(s.charAt(right), right);
+	                System.out.println(" charMap.containsKey(s.charAt(right) "+  charMap.containsKey(s.charAt(right)));
+	                System.out.println(" charMap.get(s.charAt(right) "+  charMap.get(s.charAt(right)));
 	                maxLength = Math.max(maxLength, right - left + 1);
+	                System.out.println("maxLength "+maxLength);
 	            } else {
 	                left = charMap.get(s.charAt(right)) + 1;
+	             //   charMap.put(s.charAt(right), right);
+	                System.out.println(" charMap.get('b') "+  charMap.get('b'));	                
+	                System.out.println("left "+left);
+
+	                System.out.println(" charMap.get(s.charAt(right) "+  charMap.get(s.charAt(right)));	         
+	                System.out.println("left "+left);
 	                charMap.put(s.charAt(right), right);
 	            }
 	        }
-	        
+	        System.out.println(charMap);
 	        return maxLength;
 	    }
 	    public int lengthOfLongestSubstringiNTEGERaRRAY(String s) {
